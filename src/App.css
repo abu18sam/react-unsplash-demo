@@ -1,0 +1,29 @@
+/* .images-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+} */
+
+.header-title {
+  text-align: center;
+  color: seagreen;
+}
+
+.images-grid .image-card {
+  -webkit-column-break-inside: avoid;
+  break-inside: avoid;
+  border-radius: .5em;
+  margin: 1em 0;
+  padding: .5em;
+  width: max-content;
+  align-self: center;
+  border: 0px;
+  border-radius: 3px !important;
+}
+
+.pagination-container {
+  width: 100%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
