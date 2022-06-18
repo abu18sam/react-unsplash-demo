@@ -23,7 +23,7 @@ const ImagesList = (props) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalImages, setTotalImages] = useState(1);
     const [imagesList, setImagesList] = useState([]);
-    const [itemsPerPage, setItemsPerPage] = useState(12);
+    const [itemsPerPage] = useState(12);
 
     const fetchImageByQuery = ({ newSearch = false, searchQuery, currentPage, itemsPerPage }) => {
         UnsplashInstance.search.getPhotos({
