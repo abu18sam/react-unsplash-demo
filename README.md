@@ -1,3 +1,14 @@
+Application uses npm library `unsplash-js` to fetch images list.
+Please follow below steps to make it work.
+1. Register yourself first if not registered at developer platform of unsplash [https://unsplash.com/developers]
+2. Create an application.
+3. Inside Project directory create .env file using .env.sample file.
+4. Paste access key inside .env file for the key named `REACT_APP_UNSPLASH_CLIENT_ID`.
+5. Install node modules using command `npm install`.
+5. Run application in development mode using command `npm start`.
+6. Application will be accessible in the browser in development mode.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
