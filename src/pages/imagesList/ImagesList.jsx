@@ -2,12 +2,9 @@ import { useState, useEffect, useCallback, lazy, Suspense } from 'react';
 import Container from 'react-bootstrap/Container';
 import SearchInput from '../../components/searchInput/SearchInput';
 import UnsplashInstance from '../../service/UnsplashInstance';
-// import { MockImagesList } from '../../service/mockdata';
 import PaginationComponent from '../../components/pagination/Pagination';
 
-
 const ImageGrid = lazy(() => import('../../components/imagesContainer/imageGrid/ImageGrid/ImageGrid'));
-
 
 const debounce = (func, delay = 3000) => {
     let timer;
@@ -35,9 +32,7 @@ const ImagesList = (props) => {
             perPage: itemsPerPage,
         })
             .then(resp => {
-                console.log('querySearch = ', resp);
                 if (resp?.status === 200 && resp?.response?.results?.length) {
-                    console.log('response with search query ==== ', resp);
                     setImagesList(resp.response.results);
                     setTotalImages(resp.response.total);
                 }
