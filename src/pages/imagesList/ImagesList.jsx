@@ -103,6 +103,7 @@ const ImagesList = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchQuery, currentPage, itemsPerPage]);
 
+    // fetch data on component did mount
     useEffect(() => {
         delayedCall({
             searchQuery, currentPage, itemsPerPage, newSearch: true,
