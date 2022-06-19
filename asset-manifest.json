@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/react-unsplash-demo/static/css/main.607a2968.css",
-    "main.js": "/react-unsplash-demo/static/js/main.e3f8447a.js",
+    "main.css": "/react-unsplash-demo/static/css/main.52372e9d.css",
+    "main.js": "/react-unsplash-demo/static/js/main.12a9efd0.js",
     "static/js/636.b98b0f6b.chunk.js": "/react-unsplash-demo/static/js/636.b98b0f6b.chunk.js",
     "static/js/787.1dbf5817.chunk.js": "/react-unsplash-demo/static/js/787.1dbf5817.chunk.js",
     "index.html": "/react-unsplash-demo/index.html",
-    "main.607a2968.css.map": "/react-unsplash-demo/static/css/main.607a2968.css.map",
-    "main.e3f8447a.js.map": "/react-unsplash-demo/static/js/main.e3f8447a.js.map",
+    "main.52372e9d.css.map": "/react-unsplash-demo/static/css/main.52372e9d.css.map",
+    "main.12a9efd0.js.map": "/react-unsplash-demo/static/js/main.12a9efd0.js.map",
     "636.b98b0f6b.chunk.js.map": "/react-unsplash-demo/static/js/636.b98b0f6b.chunk.js.map",
     "787.1dbf5817.chunk.js.map": "/react-unsplash-demo/static/js/787.1dbf5817.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.607a2968.css",
-    "static/js/main.e3f8447a.js"
+    "static/css/main.52372e9d.css",
+    "static/js/main.12a9efd0.js"
   ]
 }
