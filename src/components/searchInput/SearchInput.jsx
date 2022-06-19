@@ -15,7 +15,7 @@ const SearchInput = (props) => {
                     <Form.Label>Search by keyword</Form.Label>
                     <Row>
                         <Col>
-                            <Form.Control autoComplete='none' type="text" value={searchQuery} placeholder="Enter keyword to search by..." onChange={e => setSearchQuery(e.target.value)} />
+                            <Form.Control autocomplete="off" type="text" value={searchQuery} placeholder="Enter keyword to search by..." onChange={e => setSearchQuery(e.target.value)} />
                         </Col>
                         <Col>
                             <Row>
