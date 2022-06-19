@@ -1,6 +1,6 @@
 import Pagination from 'react-bootstrap/Pagination';
 import PropTypes from 'prop-types';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 
 const PaginationComponent = (props) => {
     const { currentPage, totalItems, itemsPerPage, navigateToPage } = props;
@@ -39,4 +39,4 @@ PaginationComponent.propTypes = {
     navigateToPage: PropTypes.func
 }
 
-export default PaginationComponent;
+export default memo(PaginationComponent);

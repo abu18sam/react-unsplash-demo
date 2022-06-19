@@ -3,20 +3,10 @@ import Container from 'react-bootstrap/Container';
 import SearchInput from '../../components/searchInput/SearchInput';
 import UnsplashInstance from '../../service/UnsplashInstance';
 import PaginationComponent from '../../components/pagination/Pagination';
+import SpinnerLoader from '../../components/loader/Loader';
+import { debounce } from '../../utils/functions/Debounce';
 
 const ImageGrid = lazy(() => import('../../components/imagesContainer/imageGrid/ImageGrid/ImageGrid'));
-
-const debounce = (func, delay = 3000) => {
-    let timer;
-    return function (...args) {
-        const context = this;
-        if (timer) clearTimeout(timer);
-        timer = setTimeout(() => {
-            timer = null;
-            func.apply(context, args);
-        }, delay);
-    };
-};
 
 const ImagesList = (props) => {
     const [searchQuery, setSearchQuery] = useState(localStorage.getItem('searchQuery') || '');
@@ -24,8 +14,12 @@ const ImagesList = (props) => {
     const [totalImages, setTotalImages] = useState(1);
     const [imagesList, setImagesList] = useState([]);
     const [itemsPerPage] = useState(12);
+    const [isLoading, setIsLoading] = useState(false);
 
     const fetchImageByQuery = ({ newSearch = false, searchQuery, currentPage, itemsPerPage }) => {
+        setImagesList([]);
+        setTotalImages(0);
+        setIsLoading(true);
         UnsplashInstance.search.getPhotos({
             query: searchQuery,
             page: newSearch ? 1 : currentPage,
@@ -36,10 +30,6 @@ const ImagesList = (props) => {
                     setImagesList(resp.response.results);
                     setTotalImages(resp.response.total);
                 }
-                else {
-                    setImagesList([]);
-                    setTotalImages(0);
-                }
             })
             .catch(error => {
                 console.log(error);
@@ -48,6 +38,7 @@ const ImagesList = (props) => {
                 if (newSearch) {
                     setCurrentPage(1);
                 }
+                setIsLoading(false);
             })
     }
 
@@ -55,6 +46,9 @@ const ImagesList = (props) => {
     const delayedCallWithQuery = useCallback(debounce(fetchImageByQuery, 3000), []);
 
     const fetchAllImagesList = ({ currentPage, itemsPerPage }) => {
+        setImagesList([]);
+        setTotalImages(0);
+        setIsLoading(true);
         UnsplashInstance.photos.list({
             page: currentPage,
             perPage: itemsPerPage
@@ -64,13 +58,12 @@ const ImagesList = (props) => {
                     setImagesList(resp.response.results);
                     setTotalImages(resp.response.total);
                 }
-                else {
-                    setImagesList([]);
-                    setTotalImages(0);
-                }
             })
             .catch(error => {
                 console.log(error);
+            })
+            .finally(() => {
+                setIsLoading(false);
             })
     }
 
@@ -81,9 +74,10 @@ const ImagesList = (props) => {
         delayedCall({
             currentPage: 1, itemsPerPage, newSearch: true,
         });
+        setSearchQuery('');
         setCurrentPage(1);
-        localStorage.searchQuery('searchQuery', '');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        localStorage.setItem('searchQuery', '');
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentPage, itemsPerPage])
 
     const formSubmit = useCallback((e) => {
@@ -100,7 +94,7 @@ const ImagesList = (props) => {
             });
         }
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [searchQuery, currentPage, itemsPerPage]);
 
     // fetch data on component did mount
@@ -140,10 +134,10 @@ const ImagesList = (props) => {
                     formReset={onResetSearchForm}
                 />
 
-                <Suspense fallback={'...Loading'}>
-                    <ImageGrid
+                <Suspense fallback={<SpinnerLoader />}>
+                    {imagesList?.length && !isLoading ? <ImageGrid
                         imagesList={imagesList}
-                    />
+                    /> : <SpinnerLoader />}
                 </Suspense>
 
                 <div className='pagination-container mt-3'>
